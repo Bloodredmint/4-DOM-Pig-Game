@@ -8,7 +8,8 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-
+//add new variable for storing previous roll
+//add new variable for storing winning score
 var scores, roundScore, activePlayer, gamePlaying;
 
 init();
@@ -25,9 +26,13 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
 
     //update round score if not equal to 1
     if(dice!==1){
+      //reset all scores and next player if both equal 6
+
       //add score
       roundScore+=dice;
       document.querySelector('#current-'+activePlayer).textContent=roundScore;
+      //store dice in previous rolls
+      
     }
     else{
       //next player
@@ -84,8 +89,13 @@ function init(){
   activePlayer=0;
   roundScore=0;
   gamePlaying=true;
+// set previous roll to 0
 
   document.querySelector('.dice').style.display='none';
+
+  //display HTML input field and button
+  //if input is null,score set at default:100
+  //else set score to user defined
 
   document.getElementById('score-0').textContent='0';
   document.getElementById('score-1').textContent='0';
