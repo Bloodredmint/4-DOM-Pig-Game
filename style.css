@@ -147,9 +147,9 @@ input{
   font-size: 20px;
 }
 
-#score-win{ top: 130px;}
+#score-win{ top: 90px;}
+.btn-score{ top: 135px;}
 .btn-new { top: 45px;}
-.btn-score { top: 178px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 

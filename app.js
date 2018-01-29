@@ -10,7 +10,7 @@ GAME RULES:
 */
 //add new variable for storing previous roll
 //add new variable for storing winning score
-var scores, roundScore, activePlayer, gamePlaying, prevRoll;
+var scores, roundScore, activePlayer, gamePlaying, prevRoll, scoreWin;
 
 init();
 
@@ -25,9 +25,13 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     diceDOM.src='dice-'+dice+'.png';
 
     //update round score if not equal to 1
+
+    console.log(dice);
+    console.log(prevRoll);
     if(dice!==1){
       //reset all scores and next player if both equal 6
-      if(dice===6 && prevRoll===6){
+      if(prevRoll===6 && dice===6){
+        scores[activePlayer]=0;
         document.getElementById('current-'+activePlayer).textContent='0';
         document.getElementById('score-'+activePlayer).textContent='0';
         nextPlayer();
@@ -45,6 +49,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
       nextPlayer();
     }
   }
+  console.log(prevRoll);
 
 
 });
@@ -77,6 +82,9 @@ function nextPlayer(){
   //next player
   activePlayer===0?activePlayer=1:activePlayer=0;
   roundScore=0;
+  //reset previous roll to 0
+  prevRoll=0;
+  console.log(prevRoll);
   document.getElementById('current-0').textContent='0';
   document.getElementById('current-1').textContent='0';
 
@@ -86,8 +94,8 @@ function nextPlayer(){
   document.querySelector('.player-1-panel').classList.toggle('active');
 
   document.querySelector('.dice').style.display='none';
-  //reset previous roll to 0
-  prevRoll=0;
+
+
 
 };
 
@@ -120,7 +128,7 @@ function init(){
   document.querySelector('.player-1-panel').classList.remove('acitve');
 };
 
-console.log(prevRoll);
+console.log(scoreWin);
 
 
 
