@@ -8,8 +8,9 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-
-var scores, roundScore, activePlayer, gamePlaying;
+//add new variable for storing previous roll
+//add new variable for storing winning score
+var scores, roundScore, activePlayer, gamePlaying, prevRoll, scoreWin;
 
 init();
 
@@ -24,16 +25,31 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     diceDOM.src='dice-'+dice+'.png';
 
     //update round score if not equal to 1
+
+    console.log(dice);
+    console.log(prevRoll);
     if(dice!==1){
+      //reset all scores and next player if both equal 6
+      if(prevRoll===6 && dice===6){
+        scores[activePlayer]=0;
+        document.getElementById('current-'+activePlayer).textContent='0';
+        document.getElementById('score-'+activePlayer).textContent='0';
+        nextPlayer();
+      }
+      else{
       //add score
       roundScore+=dice;
       document.querySelector('#current-'+activePlayer).textContent=roundScore;
+      }
+      //store dice in previous rolls
+      prevRoll=dice;
     }
     else{
       //next player
       nextPlayer();
     }
   }
+  console.log(prevRoll);
 
 
 });
@@ -66,6 +82,9 @@ function nextPlayer(){
   //next player
   activePlayer===0?activePlayer=1:activePlayer=0;
   roundScore=0;
+  //reset previous roll to 0
+  prevRoll=0;
+  console.log(prevRoll);
   document.getElementById('current-0').textContent='0';
   document.getElementById('current-1').textContent='0';
 
@@ -75,6 +94,9 @@ function nextPlayer(){
   document.querySelector('.player-1-panel').classList.toggle('active');
 
   document.querySelector('.dice').style.display='none';
+
+
+
 };
 
 document.querySelector('.btn-new').addEventListener('click', init);
@@ -84,8 +106,13 @@ function init(){
   activePlayer=0;
   roundScore=0;
   gamePlaying=true;
-
+// set previous roll to 0
+  prevRoll=0;
   document.querySelector('.dice').style.display='none';
+
+  //display HTML input field and button
+  //if input is null,score set at default:100
+  //else set score to user defined
 
   document.getElementById('score-0').textContent='0';
   document.getElementById('score-1').textContent='0';
@@ -101,7 +128,7 @@ function init(){
   document.querySelector('.player-1-panel').classList.remove('acitve');
 };
 
-
+console.log(scoreWin);
 
 
 
