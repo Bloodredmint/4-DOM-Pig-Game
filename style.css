@@ -139,7 +139,17 @@ i {
     transition: margin 0.3s;
 }
 
+input{
+  position: absolute;
+  width: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+}
+
+#score-win{ top: 130px;}
 .btn-new { top: 45px;}
+.btn-score { top: 178px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
