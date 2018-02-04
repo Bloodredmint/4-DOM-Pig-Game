@@ -9,11 +9,15 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, gamePlaying;
+//add new variable to store previous roll
+//add new variable to store win amount
+
+var scores, roundScore, activePlayer, gamePlaying, prevRoll;
 
 init();
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
+  //hide HTML input field
   if(gamePlaying){
     //random number
     var dice=Math.floor(Math.random()*6)+1;
@@ -23,11 +27,22 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     diceDOM.style.display='block';
     diceDOM.src='dice-'+dice+'.png';
 
+    //check prevRoll and dice is equal to 6
+    console.log(prevRoll +' '+dice);
+    if(prevRoll===6 && dice===6){
+      scores[activePlayer]=0;
+      document.querySelector('#score-'+activePlayer).textContent='0';
+      document.querySelector('#current-'+activePlayer).textContent='0';
+      nextPlayer();
+    }
+
+
     //update round score if not equal to 1
-    if(dice!==1){
+     else if(dice!==1){
       //add score
       roundScore+=dice;
       document.querySelector('#current-'+activePlayer).textContent=roundScore;
+      prevRoll=dice;
     }
     else{
       //next player
@@ -66,6 +81,7 @@ function nextPlayer(){
   //next player
   activePlayer===0?activePlayer=1:activePlayer=0;
   roundScore=0;
+  prevRoll=0;
   document.getElementById('current-0').textContent='0';
   document.getElementById('current-1').textContent='0';
 
@@ -79,11 +95,13 @@ function nextPlayer(){
 
 document.querySelector('.btn-new').addEventListener('click', init);
 
-function init(){
+function init(){//store HTML input in variable to win the gamePlaying
+  //display at start of game
   scores=[0,0];
   activePlayer=0;
   roundScore=0;
   gamePlaying=true;
+  prevRoll=0;
 
   document.querySelector('.dice').style.display='none';
 

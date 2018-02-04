@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+
 }
 
 .clearfix::after {
@@ -80,7 +80,7 @@ body {
     color: #EB4D4D;
     top: -7px;
     right: 10px;
-    
+
 }
 
 .player-current-box {
@@ -137,6 +137,16 @@ i {
     transition: margin 0.3s;
 }
 
+input{
+  position: absolute;
+  width: 200px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:20px;
+  top:90px;
+}
+
+.btn-win{top:135px;}
 .btn-new { top: 45px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
