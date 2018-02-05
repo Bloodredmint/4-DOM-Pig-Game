@@ -12,7 +12,7 @@ GAME RULES:
 //add new variable to store previous roll
 //add new variable to store win amount
 
-var scores, roundScore, activePlayer, gamePlaying, prevRoll;
+var scores, roundScore, activePlayer, gamePlaying, prevRoll, toWin;
 
 init();
 
@@ -62,7 +62,7 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
     document.querySelector('#score-'+activePlayer).textContent=scores[activePlayer];
 
     //check win condition
-    if(scores[activePlayer]>=100){
+    if(scores[activePlayer]>=toWin){
       //activePlayer wins the game
       document.querySelector('#name-'+activePlayer).textContent='!!!WINNER!!!';
       document.querySelector('.dice').style.display='none';
@@ -95,7 +95,19 @@ function nextPlayer(){
 
 document.querySelector('.btn-new').addEventListener('click', init);
 
-function init(){//store HTML input in variable to win the gamePlaying
+document.querySelector('.btn-win').addEventListener('click', function(){
+  toWin=document.getElementById('to-win').valueAsNumber;
+  if(isNaN(toWin)){
+    toWin=100;
+  }
+  document.getElementById('to-win').style.display='none';
+  document.querySelector('.btn-win').style.display='none';
+  document.querySelector('.btn-roll').style.display='block';
+  document.querySelector('.btn-hold').style.display='block';
+  document.getElementById('setting').textContent='Score to beat is '+toWin;
+});
+
+function init(){
   //display at start of game
   scores=[0,0];
   activePlayer=0;
@@ -104,6 +116,12 @@ function init(){//store HTML input in variable to win the gamePlaying
   prevRoll=0;
 
   document.querySelector('.dice').style.display='none';
+  document.getElementById('to-win').style.display='block';
+  document.querySelector('.btn-win').style.display='block';
+  document.getElementById('setting').style.display='block';
+  document.querySelector('.btn-roll').style.display='none';
+  document.querySelector('.btn-hold').style.display='none';
+  document.getElementById('setting').textContent='Please enter score to beat';
 
   document.getElementById('score-0').textContent='0';
   document.getElementById('score-1').textContent='0';

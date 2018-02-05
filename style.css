@@ -137,16 +137,24 @@ i {
     transition: margin 0.3s;
 }
 
-input{
+h3{
   position: absolute;
-  width: 200px;
   left:50%;
   transform:translateX(-50%);
   font-size:20px;
   top:90px;
 }
 
-.btn-win{top:135px;}
+input{
+  position: absolute;
+  width: 200px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:20px;
+  top:135px;
+}
+
+.btn-win{top:180px;}
 .btn-new { top: 45px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
