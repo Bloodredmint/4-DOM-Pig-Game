@@ -20,16 +20,26 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
   //hide HTML input field
   if(gamePlaying){
     //random number
-    var dice=Math.floor(Math.random()*6)+1;
+    var dice=[0,0];
+
+    for(var i=0;i<2;i++){
+      dice[i]=Math.floor(Math.random()*6)+1;
+    }
+
+    console.log(dice);
+    //var dice=Math.floor(Math.random()*6)+1;
 
     //display result
-    var diceDOM=document.querySelector('.dice');
-    diceDOM.style.display='block';
-    diceDOM.src='dice-'+dice+'.png';
+    var diceDOM1=document.querySelector('#dice-0');
+    var diceDOM2=document.querySelector('#dice-1');
+    diceDOM1.style.display='block';
+    diceDOM1.src='dice-'+dice[0]+'.png';
+    diceDOM2.style.display='block';
+    diceDOM2.src='dice-'+dice[1]+'.png';
 
     //check prevRoll and dice is equal to 6
     console.log(prevRoll +' '+dice);
-    if(prevRoll===6 && dice===6){
+    if(prevRoll===[6,6] && dice===[6,6]){
       scores[activePlayer]=0;
       document.querySelector('#score-'+activePlayer).textContent='0';
       document.querySelector('#current-'+activePlayer).textContent='0';
@@ -38,9 +48,10 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
 
 
     //update round score if not equal to 1
-     else if(dice!==1){
+     else if(dice[0]!==1&&dice[1]!==1){
       //add score
-      roundScore+=dice;
+      var total=dice[0]+dice[1];
+      roundScore+=total;
       document.querySelector('#current-'+activePlayer).textContent=roundScore;
       prevRoll=dice;
     }
@@ -90,7 +101,8 @@ function nextPlayer(){
   document.querySelector('.player-0-panel').classList.toggle('active');
   document.querySelector('.player-1-panel').classList.toggle('active');
 
-  document.querySelector('.dice').style.display='none';
+  document.getElementById('dice-0').style.display='none';
+  document.getElementById('dice-1').style.display='none';
 };
 
 document.querySelector('.btn-new').addEventListener('click', init);
@@ -115,7 +127,8 @@ function init(){
   gamePlaying=true;
   prevRoll=0;
 
-  document.querySelector('.dice').style.display='none';
+  document.getElementById('dice-0').style.display='none';
+  document.getElementById('dice-1').style.display='none';
   document.getElementById('to-win').style.display='block';
   document.querySelector('.btn-win').style.display='block';
   document.getElementById('setting').style.display='block';
