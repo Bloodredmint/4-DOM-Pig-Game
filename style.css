@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+
 }
 
 .clearfix::after {
@@ -80,7 +80,7 @@ body {
     color: #EB4D4D;
     top: -7px;
     right: 10px;
-    
+
 }
 
 .player-current-box {
@@ -137,6 +137,24 @@ i {
     transition: margin 0.3s;
 }
 
+h3{
+  position: absolute;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:20px;
+  top:90px;
+}
+
+input{
+  position: absolute;
+  width: 200px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:20px;
+  top:135px;
+}
+
+.btn-win{top:180px;}
 .btn-new { top: 45px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
@@ -144,10 +162,13 @@ i {
 .dice {
     position: absolute;
     left: 50%;
-    top: 178px;
+    top: 150px;
     transform: translateX(-50%);
     height: 100px;
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+}
+#dice-1{
+  top:275px;
 }
 
 .winner { background-color: #f7f7f7; }
